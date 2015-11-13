@@ -1,0 +1,15 @@
+ CREATE TABLE `Tweets` (
+`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`UserId` int(11) DEFAULT NULL,
+`tweet` varchar(255) DEFAULT NULL,
+PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `Users` (
+`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`name` varchar(255) DEFAULT NULL,
+`pictureUrl` text,
+PRIMARY KEY (`id`)
+);
+
+show tables;

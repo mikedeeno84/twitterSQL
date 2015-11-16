@@ -11,3 +11,4 @@ module.exports = function(db) {
 
     return Tweet;
 }
+

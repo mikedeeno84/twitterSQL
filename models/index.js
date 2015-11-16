@@ -39,6 +39,7 @@ Tweet.belongsTo(User);
 //     //var JSONstringified = JSON.stringify(tweet);
 // });
 
+
 // Tweet.findOne()
 // .then(function ())
 // User.findById(1).then(function(user){
@@ -54,3 +55,4 @@ Tweet.belongsTo(User);
 //     console.log(user);
 //   });
 //   });
+

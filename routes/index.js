@@ -5,23 +5,25 @@ var tweetIndex = require('../models/index');
 
 router.get('/', function (req, res) {
 
- 	tweetIndex.Tweet.findAll().then(function(tweets){
+ 	tweetIndex.Tweet.findAll( {include: [tweetIndex.User]}).then(function(tweets){
  		return tweets
 }).then(function(tweets){
-	console.log(JSON.stringify(tweets))
+	res.render('index', {title: "twitter.sql", tweets: tweets});
+	});
+});
+
+function getTweet (req, res){
+	tweetIndex.Tweet.findAll({include:[ tweetIndex.User], where :{ User : req.params } }).then(function(tweets){
+ 		return tweets;
+}).then(function(tweets){
+	console.log(req.params)
+	// console.log(JSON.stringify(tweets));
+
 	res.render('index', {title: "twitter.sql", tweets: tweets});
 });
- 		
+}
 
-	// res.render( 'index', { title: 'Twitter.js', tweets: tweets } );
-});
-
-// function getTweet (req, res){
-
-//   res.render('index', { tweets: tweets });
-// }
-
-// router.get('/users/:name', getTweet);
+router.get('/users/:name', getTweet);
 // router.get('/users/:name/tweets/:id', getTweet);
 
 // // note: this is not very REST-ful. We will talk about REST in the future.
@@ -33,3 +35,5 @@ router.get('/', function (req, res) {
 // });
 
 module.exports = router;
+
+// {where: req.params }

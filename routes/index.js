@@ -1,27 +1,35 @@
 var express = require('express');
 var router = express.Router();
 // could use one line instead: var router = require('express').Router();
-var tweetBank = require('../tweetBank');
+var tweetIndex = require('../models/index');
 
 router.get('/', function (req, res) {
-  var tweets = tweetBank.list();
-  res.render( 'index', { title: 'Twitter.js', tweets: tweets } );
+
+ 	tweetIndex.Tweet.findAll().then(function(tweets){
+ 		return tweets
+}).then(function(tweets){
+	console.log(JSON.stringify(tweets))
+	res.render('index', {title: "twitter.sql", tweets: tweets});
+});
+ 		
+
+	// res.render( 'index', { title: 'Twitter.js', tweets: tweets } );
 });
 
-function getTweet (req, res){
-  var tweets = tweetBank.find(req.params);
-  res.render('index', { tweets: tweets });
-}
+// function getTweet (req, res){
 
-router.get('/users/:name', getTweet);
-router.get('/users/:name/tweets/:id', getTweet);
+//   res.render('index', { tweets: tweets });
+// }
 
-// note: this is not very REST-ful. We will talk about REST in the future.
-router.post('/submit', function(req, res) {
-  var name = req.body.name;
-  var text = req.body.text;
-  tweetBank.add(name, text);
-  res.redirect('/');
-});
+// router.get('/users/:name', getTweet);
+// router.get('/users/:name/tweets/:id', getTweet);
+
+// // note: this is not very REST-ful. We will talk about REST in the future.
+// router.post('/submit', function(req, res) {
+//   var name = req.body.name;
+//   var text = req.body.text;
+
+//   res.redirect('/');
+// });
 
 module.exports = router;

@@ -36,7 +36,7 @@ app.use(morgan('dev')); // logs req & res properties on response send
 app.use('/', routes);
 
 // static routing
-app.use(express.static(__dirname + '/public'));
+// app.use(express.static(__dirname + '/public'));
 
 // // manually-written static file middleware
 // app.use(function(req, res, next) {
@@ -50,16 +50,16 @@ app.use(express.static(__dirname + '/public'));
 // });
 
 // if we got this far, we couldn't match the route, so send to error middleware
-app.use(function(req, res, next){
-  var err = new Error('could not find route');
-  err.status = 404;
-  next(err); // passing a truthy value to `next` goes to error middleware
-});
+// app.use(function(req, res, next){
+//   var err = new Error('could not find route');
+//   err.status = 404;
+//   next(err); // passing a truthy value to `next` goes to error middleware
+// });
 
-// a custom error-handling middleware function
-app.use(function(err, req, res, next){ // 4 params -> error-handling middleware
-  res.status(err.status || 500).send('ERROR: ' + err.message);
-});
+// // a custom error-handling middleware function
+// app.use(function(err, req, res, next){ // 4 params -> error-handling middleware
+//   res.status(err.status || 500).send('ERROR: ' + err.message);
+// });
 
 // start our server
 app.listen(PORT, function(){

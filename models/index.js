@@ -30,14 +30,27 @@ module.exports = {
 User.hasMany(Tweet);
 Tweet.belongsTo(User);
 
-User.findAll( {include : [Tweet] })
-.then(function (tweet) {
-    // big old crazy object, but no name or
-    // id anywhere in there
-    //console.log(tweet[0]);
-    console.log(tweet[0].dataValues.Tweets[0].dataValues.tweet);
-    //var JSONstringified = JSON.stringify(tweet);
-});
+// User.findAll( {include : [Tweet] })
+// .then(function (tweet) {
+//     // big old crazy object, but no name or
+//     // id anywhere in there
+//     //console.log(tweet[0]);
+//     console.log(tweet[0].dataValues.Tweets[0].dataValues.tweet);
+//     //var JSONstringified = JSON.stringify(tweet);
+// });
 
 // Tweet.findOne()
 // .then(function ())
+// User.findById(1).then(function(user){
+//   console.log(user.pictureUrl);
+// });
+// User.findAll({where :["id >?", 1]}).then(function(user){
+//   console.log(JSON.stringify(user))
+// })
+// User.findById(9).then(function(user){
+//   user.destroy()
+// }).then(function(){
+//   User.findOne({where:{name:"Mike^3"}}).then(function(user){
+//     console.log(user);
+//   });
+//   });

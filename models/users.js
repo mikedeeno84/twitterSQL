@@ -9,9 +9,5 @@ module.exports = function(db) {
     });
 
     return User;
-<<<<<<< HEAD
-};
-=======
-};
 
->>>>>>> ba8f08dd30d5107321ad666280c6b0afec1dcd40
+};
